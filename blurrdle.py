@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import os
 import sys
 import random
@@ -17,11 +16,11 @@ wordleArray = []
 guessArray = []
 
 #getting word
-with open(os.path.join(sys.path[0], "actualwordbank.txt"), "r") as file:
+with open("C:/Users/morni/Desktop/Code/blurrdle/actualwordbank.txt", "r") as file:
     allActualText = file.read()
     actualWords = list(map(str, allActualText.split()))
 
-with open(os.path.join(sys.path[0], "potentialwordbank.txt"), "r") as file:
+with open("C:/Users/morni/Desktop/Code/blurrdle/potentialwordbank.txt", "r") as file:
     allPotentialText = file.read()
     potentialWords = list(map(str, allPotentialText.split()))
 
