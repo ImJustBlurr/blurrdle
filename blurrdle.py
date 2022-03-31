@@ -60,7 +60,23 @@ while i < 7:
         print(Fore.GREEN + guess + reset)
         print(Fore.GREEN + '\nYOU SUCCESSFULLY GUESSED THE WORDLE' + reset)
         win = True
-        break
+        if win == True:
+            print(Fore.CYAN + 'THE WORD WAS: ' + Fore.GREEN + wordle + reset)
+        print(Fore.CYAN + 'If you would like to play again type ' + Fore.GREEN + 'y' + Fore.CYAN + ', if not type ' + Fore.RED + 'n' + Fore.CYAN + '.' + reset)
+        reiterate = input().lower()
+        if reiterate == 'y':
+            i = 1
+            c=-1
+            guessArray.clear()
+            wordleArray.clear()
+            wordle = random.choice(actualWords)
+            for letter in wordle:
+                wordleArray.append(letter)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print(Fore.CYAN + ' _     _                    _ _      \n| |__ | |_   _ _ __ _ __ __| | | ___ \n| \'_ \\| | | | | \'__| \'__/ _` | |/ _ \\\n| |_) | | |_| | |  | | | (_| | |  __/\n|_.__/|_|\\__,_|_|  |_|  \\__,_|_|\\___|\n' + reset)
+            continue
+        elif reiterate == 'n':
+            break
     print(f'{i}/6:', end=' ')
     for letter in guess:
         c+=1
