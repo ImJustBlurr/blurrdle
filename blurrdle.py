@@ -6,6 +6,8 @@ from colorama import *
 
 #initializing colorama
 init()
+logfile = open("C:/Users/morni/Desktop/Code/blurrdle/log.txt","a")
+logfile.truncate(0)
 os.system('cls' if os.name == 'nt' else 'clear')
 #VARIABLES
 i = 1
@@ -35,8 +37,10 @@ print(Fore.CYAN + ' _     _                    _ _      \n| |__ | |_   _ _ __ _ 
 print(Style.RESET_ALL)
 
 while i < 7:
+    
     print(f'{i}/6:', end=' ')
     guess = input().lower()
+    logfile.write(f'{guess}\n')
     for letter in guess:
         guessArray.append(letter)
     print ("\033[A                             \033[A")
@@ -102,6 +106,7 @@ while i < 7:
             print(Fore.CYAN + 'THE WORD WAS: ' + Fore.GREEN + wordle + reset)
             print(Fore.CYAN + 'If you would like to play again type ' + Fore.GREEN + 'y' + Fore.CYAN + ', if not type ' + Fore.RED + 'n' + Fore.CYAN + '.' + reset)
             reiterate = input().lower()
+            
             if reiterate == 'y':
                 i = 1
                 c=-1
@@ -112,6 +117,7 @@ while i < 7:
                     wordleArray.append(letter)
                 os.system('cls' if os.name == 'nt' else 'clear')
                 print(Fore.CYAN + ' _     _                    _ _      \n| |__ | |_   _ _ __ _ __ __| | | ___ \n| \'_ \\| | | | | \'__| \'__/ _` | |/ _ \\\n| |_) | | |_| | |  | | | (_| | |  __/\n|_.__/|_|\\__,_|_|  |_|  \\__,_|_|\\___|\n' + reset)
+                logfile.truncate(0)
                 continue
             elif reiterate == 'n':
                 pass
@@ -121,4 +127,6 @@ while i < 7:
     guessArray.clear()
 
 #deinitializing colorama
+logfile.write(f'\nSolution: {wordle}')
+logfile.close()
 deinit()
