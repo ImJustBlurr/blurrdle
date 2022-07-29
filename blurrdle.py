@@ -9,7 +9,7 @@ init()
 
 #setting up the log file
 #log file is there for the case of a crash. you will be able to see what the word was if something glitches.
-logfile = open("log.txt","a")
+logfile = open(os.path.join(sys.path[0], "log.txt"),"a")
 logfile.truncate(0)
 
 os.system('cls' if os.name == 'nt' else 'clear') #clears the terminal
@@ -23,11 +23,11 @@ wordleArray = []
 guessArray = []
 
 #getting word
-with open("actualwordbank.txt", "r") as file:
+with open(os.path.join(sys.path[0], "actualwordbank.txt"), "r") as file:
     allActualText = file.read()
     actualWords = list(map(str, allActualText.split()))
 
-with open("potentialwordbank.txt", "r") as file:
+with open(os.path.join(sys.path[0], "potentialwordbank.txt"), "r") as file:
     allPotentialText = file.read()
     potentialWords = list(map(str, allPotentialText.split()))
 
