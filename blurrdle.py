@@ -7,27 +7,29 @@ from colorama import *
 #initializing colorama
 init()
 
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
 #setting up the log file
 #log file is there for the case of a crash. you will be able to see what the word was if something glitches.
-logfile = open("C:/Users/morni/Desktop/Code/blurrdle/log.txt","a")
+logfile = open(os.path.join(__location__, 'log.txt'), 'a')
 logfile.truncate(0)
 
 os.system('cls' if os.name == 'nt' else 'clear') #clears the terminal
 
 #VARIABLES
-i = 1
-c = -1
-win = False
-reset = Style.RESET_ALL
+i = 1 #iteration for main guessing loop
+c = -1 #iteration through chars in the guess
+reset = Style.RESET_ALL #used with colorama to reset the styles
 wordleArray = []
 guessArray = []
 
 #getting word
-with open("C:/Users/morni/Desktop/Code/blurrdle/actualwordbank.txt", "r") as file:
+with open(os.path.join(__location__, 'actualwordbank.txt'), 'r') as file:
     allActualText = file.read()
     actualWords = list(map(str, allActualText.split()))
 
-with open("C:/Users/morni/Desktop/Code/blurrdle/potentialwordbank.txt", "r") as file:
+with open(os.path.join(__location__, 'potentialwordbank.txt'), 'r') as file:
     allPotentialText = file.read()
     potentialWords = list(map(str, allPotentialText.split()))
 
@@ -44,7 +46,6 @@ while i < 7:
     
     print(f'{i}/6:', end=' ')
     guess = input().lower()
-    logfile.write(f'{guess}\n')
     for letter in guess:
         guessArray.append(letter)
     print ("\033[A                             \033[A")
@@ -67,9 +68,7 @@ while i < 7:
         print(f'{i}/6:', end=' ')
         print(Fore.GREEN + guess + reset)
         print(Fore.GREEN + '\nYOU SUCCESSFULLY GUESSED THE WORDLE' + reset)
-        win = True
-        if win == True:
-            print(Fore.CYAN + 'THE WORD WAS: ' + Fore.GREEN + wordle + reset)
+        print(Fore.CYAN + 'THE WORD WAS: ' + Fore.GREEN + wordle + reset)
         print(Fore.CYAN + 'If you would like to play again type ' + Fore.GREEN + 'y' + Fore.CYAN + ', if not type ' + Fore.RED + 'n' + Fore.CYAN + '.' + reset)
         reiterate = input().lower()
         if reiterate == 'y': #asks if they want to play again
@@ -85,7 +84,7 @@ while i < 7:
             continue
         elif reiterate == 'n':
             break
-    print(f'{i}/6:', end=' ') #processes the word and checks if the guess has any valid letters in the wordle and if theyre in the right position.
+    print(f'{i}/6:', end=' ') #processes the word and checks if the guess has any valid letters in the wordle and if they're in the right position.
     for letter in guess:
         c+=1
         if guessArray[c] == wordleArray[c]:
@@ -104,9 +103,9 @@ while i < 7:
         print(letter, end='')
         
     print('\n')
+    logfile.write(f'{guess}\n')
 
     if i == 6: #displays when the user is out of guesses and didnt get the word right.
-        if win == False:
             print(Fore.CYAN + 'THE WORD WAS: ' + Fore.GREEN + wordle + reset)
             print(Fore.CYAN + 'If you would like to play again type ' + Fore.GREEN + 'y' + Fore.CYAN + ', if not type ' + Fore.RED + 'n' + Fore.CYAN + '.' + reset)
             reiterate = input().lower()
