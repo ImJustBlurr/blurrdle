@@ -12,7 +12,11 @@ __location__ = os.path.realpath(
 
 #setting up the log file
 #log file is there for the case of a crash. you will be able to see what the word was if something glitches.
+<<<<<<< HEAD
 logfile = open(os.path.join(__location__, 'log.txt'), 'a')
+=======
+logfile = open(os.path.join(sys.path[0], "log.txt"),"a")
+>>>>>>> 8e1be7b66107e7c3871a7c96acdc1b04c60b485a
 logfile.truncate(0)
 
 os.system('cls' if os.name == 'nt' else 'clear') #clears the terminal
@@ -30,6 +34,11 @@ with open(os.path.join(__location__, 'actualwordbank.txt'), 'r') as file:
     actualWords = list(map(str, allActualText.split()))
 
 with open(os.path.join(__location__, 'potentialwordbank.txt'), 'r') as file:
+with open(os.path.join(sys.path[0], "actualwordbank.txt"), "r") as file:
+    allActualText = file.read()
+    actualWords = list(map(str, allActualText.split()))
+
+with open(os.path.join(sys.path[0], "potentialwordbank.txt"), "r") as file:
     allPotentialText = file.read()
     potentialWords = list(map(str, allPotentialText.split()))
 

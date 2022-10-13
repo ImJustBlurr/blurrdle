@@ -1,6 +1,6 @@
 # BLURRDLE
 This is a shameless recreation of the popular game WORDLE.
-I wanted to give my best effort in trying to replicate it using python.
+I wanted to give my best effort in trying to replicate it using python. I am in no way affiliated with wordle.
 
 # Installation
 Simply download and open the zip file and blurrdle.py using python.
